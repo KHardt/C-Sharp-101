@@ -4,15 +4,10 @@ using System.Collections.Generic;
 namespace LightningExercises
 {
     
-    class Program
+   class Program
     {
         static void Main(string[] args)
         {
-            Library KlausLib = new Library()
-            {
-                Name = "Klaus Library",
-                Address= "House Street"
-            };
 
             Book CamelFace = new Book()
             {
@@ -35,9 +30,19 @@ namespace LightningExercises
                 ISBN = "hj4h77"
             };
 
+            
+            List<Book> books = new List <Book>()
+            {CamelFace}; 
+
+            Library KlausLib = new Library(books, "Klaus Library", "House Street")
+            {
+            };
+
             KlausLib.AddBook(UnicornFace);
             KlausLib.AddBook(CamelFace);
             KlausLib.AddBook(ElephantFace);
+            Console.Write(KlausLib);
+
         }
     }
 }
