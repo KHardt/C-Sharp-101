@@ -81,9 +81,13 @@ namespace sets {
             showRoom.UnionWith (Junkyard);
             
             foreach (string vehicle in showRoom) {
-                Console.WriteLine (vehicle);
+                //Console.WriteLine (vehicle);
             }
 
+            showRoom.Remove("Mustang");//if you make this Junkyard.remove will not update showRoom. 
+            foreach (string taco in showRoom) {
+                Console.WriteLine (taco);
+            }
 
 
         }
