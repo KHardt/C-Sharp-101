@@ -1,95 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace classes {
-    public class Employee {
-        public string firstName;
-        public string lastName;
-        
-
-        public string FirstName {
-            get {
-                return firstName;
-            }
-            set {
-                firstName = value;
-            }
-        }
-
-        public string LastName {
-            get {
-                return lastName;
-            }
-            set {
-                lastName = value;
-            }
-        }
-
-        public string Title { get; set;}
-
-        public DateTime StartDate { get; set;}
-
-        public string FullName
-        {
-            get
-            {
-                return string.Format($"{firstName} {lastName}");
-            }
-        }
-
-
-
-    }
-
-    public class Company {
-
-        // Some readonly properties (let's talk about gets, baby)
-        public string Name { get; set;}
-        public DateTime CreatedOn { get; set;}
-
-        // Create a public property for holding a list of current employees
-        
-            //Console.WriteLine($"Employee name {employee.FullName}");
-        
-        List<string> EmployeeList = new List<string>();
-
-        
-        //EmployeeList.ForEach(pl2 => Console.WriteLine(pl2));
-            
-        /*
-            Create a constructor method that accepts two arguments:
-                1. The name of the company
-                2. The date it was created
- 
-   
-            The constructor will set the value of the public properties
-        */
-
-        public Company(string CompanyName, DateTime DateCreated)
-        {
-            Name=CompanyName;
-            CreatedOn=DateCreated;
-        }
-
-        
-    }
+namespace ClassesInStuff {
 
     class Program {
         static void Main (string[] args) {
             // Create an instance of a company. Name it whatever you like.
+            DateTime companyStart = new DateTime(2015, 1, 18);
+            Company KlausMart = new Company ("KlausMart", companyStart){ };
+            Console.Write(KlausMart.CreatedOn);
 
-            Company KroMart = new Company() 
-            {
-                Name = "KroMart",
-                CreatedOn= "";
+            DateTime employeeStart = new DateTime(2016, 3, 17 );
+            DateTime employeeStart2 = new DateTime(2017, 7, 1 );
+            Employee Jake = new Employee () {
+                firstName = "Jake",
+                lastName = "Dullom",
+                Title = "clerk",
+                StartDate = employeeStart
+
             };
 
-            Employee NewGroup = new Employee()
-            {
-                FullName: "Jim",
+            Employee Jim = new Employee () {
+                firstName = "Jim",
+                lastName = "Bob",
+                Title = "specialist",
+                StartDate = employeeStart
 
             };
 
+            Employee Kirk = new Employee () {
+                firstName = "James",
+                lastName = "Kirk",
+                Title = "commander",
+                StartDate = employeeStart2
+
+            };
+
+            //EmployeeList.Add 
             // Create three employees
 
             // Assign the employees to the company
@@ -100,7 +47,5 @@ namespace classes {
             */
         }
     }
-
-    
 
 }

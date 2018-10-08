@@ -23,20 +23,33 @@ namespace LightningExercises {
         }
 
         public void CheckOut (string isbn, CardHolder cardHolder) {
-            Book foundBook = Book.isCheckedOut;
-            bool didFindBook = false;
-            foreach (Book book in BookList) {
+        
+            
+            foreach (Book book in BookList) 
+            {
+                if (book.ISBN == isbn && book.isAvailable == true) 
+                {
+                    cardHolder.CheckOutBook(book);
+                    book.isAvailable = false;
+                } 
+                    
+                
+            }
+
+        
+        }
+
+        public bool isAvailable(string isbn) //what if it's not in there. Makes you deal with it NOW!
+        {
+            foreach(Book book in BookList)
+            {
                 if (book.ISBN == isbn) {
-                    foundBook = book;
-                    didFindBook = true;
+                    return book.isAvailable;
+                    
+                } 
 
-                }
             }
-
-            if (didFindBook) {
-                cardHolder.CheckOutBook (foundBook);
-                BookList.Remove (foundBook);
-            }
+            return false;
         }
 
     }

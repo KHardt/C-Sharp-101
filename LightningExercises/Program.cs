@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace LightningExercises
 {
     
-   class Program
+   public class Program
     {
         static void Main(string[] args)
         {
@@ -13,26 +13,29 @@ namespace LightningExercises
             {
                 Title = "Camel Face",
                 Author = "Camel Man",
-                ISBN = "hj4h55"
+                ISBN = "hj4h55",
+                isAvailable = true
             };
 
             Book UnicornFace = new Book()
             {
                 Title = "Unicorn Face",
                 Author = "Camel Man",
-                ISBN = "hj4h66"
+                ISBN = "hj4h66",
+                isAvailable = true
             };
 
             Book ElephantFace = new Book()
             {
                 Title = "Elephant Face",
                 Author = "Joe Man",
-                ISBN = "hj4h77"
+                ISBN = "hj4h77",
+                isAvailable = true
             };
 
             
             List<Book> books = new List <Book>()
-            {CamelFace}; 
+            {CamelFace, UnicornFace, ElephantFace}; 
 
             Library KlausLib = new Library(books, "Klaus Library", "House Street")
             {
@@ -41,7 +44,15 @@ namespace LightningExercises
             KlausLib.AddBook(UnicornFace);
             KlausLib.AddBook(CamelFace);
             KlausLib.AddBook(ElephantFace);
-            Console.Write(KlausLib);
+
+            if (KlausLib.isAvailable("2B"))
+            {
+                 Console.Write("yep");
+            }
+            else {
+                Console.Write("nope");
+            }
+           
 
         }
     }
