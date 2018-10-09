@@ -30,8 +30,15 @@
         {
             Name=CompanyName;
             CreatedOn=DateCreated;
+            //EmployeeList= employees;
+
         }
 
-        
+         public void AddEmployee (Employee taco) {
+            EmployeeList.Add (taco);
+        }
+
+    
+
     }
   }

@@ -9,14 +9,6 @@ namespace ClassesInStuff {
 
         public DateTime StartDate { get; set;}
 
-        public string FullName
-        {
-            get
-            {
-                return string.Format($"{firstName} {lastName}");
-            }
-        }
-
 
     }
 

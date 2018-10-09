@@ -35,7 +35,7 @@ namespace LightningExercises
 
             
             List<Book> books = new List <Book>()
-            {CamelFace, UnicornFace, ElephantFace}; 
+            {}; 
 
             Library KlausLib = new Library(books, "Klaus Library", "House Street")
             {
