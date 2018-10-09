@@ -10,9 +10,9 @@ namespace StudentExercises
         
         public string SlackHandle { get; set;}
 
-        public string Cohort { get; set;}
+        public Cohort StudentCohort { get; set;} //attaching between two like ERD 1 to many
 
-        public List<Exercise> ExerciseList = new List<Exercise> (); 
+        public List<Exercise> ExerciseList = new List<Exercise> (); //many to many
     }
 
 }

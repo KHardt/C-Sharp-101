@@ -10,9 +10,14 @@ namespace StudentExercises
         
         public string SlackHandle { get; set;}
 
-        public string Cohort { get; set;}
+        public Cohort Cohort { get; set;}
 
-        
+        public Instructor (string firstName, )
+
+        public void AssignExercise (Exercise exercise, Student student) {
+            student.ExerciseList.Add(exercise);
+    }
+    
         
     }
 

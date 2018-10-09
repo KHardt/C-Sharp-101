@@ -37,6 +37,16 @@ namespace StudentExercises
                 Name = "Cohort 45",
             };
 
+              Cohort Cohort46 = new Cohort()
+            {
+                Name = "Cohort 46",
+            };
+
+              Cohort Cohort47 = new Cohort()
+            {
+                Name = "Cohort 47",
+            };
+
 
 
         }

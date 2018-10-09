@@ -55,7 +55,8 @@ namespace ClassesInStuff {
                 Iterate the company's employee list and generate the
                 simple report shown above
             */
-            KlausMart.EmployeeList.ForEach(emp => Console.Write(emp));
+            KlausMart.EmployeeList.ForEach(emp => Console.WriteLine($"{emp.firstName} {emp.lastName} has worked for {KlausMart.Name} since {emp.StartDate}"));
+            //Console.Write(KlausMart.Name);
               
                
             
