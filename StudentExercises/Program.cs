@@ -47,7 +47,69 @@ namespace StudentExercises
                 Name = "Cohort 47",
             };
 
+            Student Klaus  = new Student()
+            {
+                firstName = "Klaus",
+                lastName = "Hardt",
+                SlackHandle = "ookie",
+                StudentCohort = Cohort45
+            };
 
+             Student Matt  = new Student()
+            {
+                firstName = "Matt",
+                lastName = "Harding",
+                SlackHandle = "dook",
+                StudentCohort = Cohort46
+            };
+
+            Student Ricky  = new Student()
+            {
+                firstName = "Ricky",
+                lastName = "Burden",
+                SlackHandle = "dooker",
+                StudentCohort = Cohort47
+            };
+            Student Fig  = new Student()
+            {
+                firstName = "Fig",
+                lastName = "Newton",
+                SlackHandle = "mook",
+                StudentCohort = Cohort46
+            };
+
+            Instructor DrDoom = new Instructor()
+            {
+                firstName = "Dr",
+                lastName = "Doom",
+                SlackHandle = "Doomy",
+                InstructorCohort = Cohort45
+            };
+
+            Instructor DrDespair = new Instructor()
+            {
+                firstName = "D",
+                lastName = "Despair",
+                SlackHandle = "Despairy",
+                InstructorCohort = Cohort46
+            };
+
+            Instructor DrHappy = new Instructor()
+            {
+                firstName = "Really",
+                lastName = "Happy",
+                SlackHandle = "HappyFace",
+                InstructorCohort = Cohort47
+            };
+
+            DrDoom.AssignExercise(SmashFace, Klaus);
+            DrDoom.AssignExercise(PunchFace, Klaus);
+            DrDespair.AssignExercise(SmashFace, Fig);
+            Klaus.ExerciseList.ForEach(emp => Console.WriteLine(emp.Name));
+            //drives me nuts there's not more req to console log to verify
+            DrDespair.AssignExercise(PunchFace, Fig);
+            DrHappy.AssignExercise(SmashFace, Ricky);
+            DrHappy.AssignExercise(EsteemKill, Ricky);
 
         }
     }
