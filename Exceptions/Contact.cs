@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 namespace exceptions {
-class Contact {
+public class Contact {
 
 
 
@@ -15,8 +15,14 @@ class Contact {
         
         public string Address { get; set;}
 
+        public string FullName { get
+            {
+                return $"{FirstName} {LastName}";
+            } 
+        }
 
 
+ 
 
 }
 

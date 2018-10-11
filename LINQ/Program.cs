@@ -29,7 +29,7 @@ public class Program
 
 
         IEnumerable<Customer> Millionaires = from c in customers 
-        where c.Name.StartsWith("B")
+        where c.Balance >= 1000000
         select c;
              
          foreach(Customer c in Millionaires) {

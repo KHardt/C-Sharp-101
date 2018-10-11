@@ -4,21 +4,20 @@ using System.Collections.Generic;
 
 
 namespace exceptions {
-class AddressBook {
+public class AddressBook {
 
 
 
-        public string FirstName {get; set;}
+        Dictionary<string, Contact> addressbook = new Dictionary<string, Contact> ();
 
-        public string LastName {get; set;}
-        public string Email {get; set;}
-        
-        public string Address { get; set;}
-
-        public void AddContact (Contact name, AddressBook book) {
-            book.AddContact(name);
+         public void AddContact (Contact contact){
+            addressbook.Add(contact.Email, contact);
     }
 
+     public Contact GetByEmail(string email)
+        {
+            return addressbook[email];
+        }
 
 }
 

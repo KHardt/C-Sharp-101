@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 namespace exceptions {
-class Program
+public class Program
 {
     /*
         1. Add the required classes to make the following code compile.
@@ -38,8 +38,9 @@ class Program
 
         // Create an AddressBook and add some contacts to it 
         //[] to look up key in dictionary
-        Dictionary<string, string> addressbook = new Dictionary<string, string> ();
+        
         AddressBook addressBook = new AddressBook();
+
         addressBook.AddContact(bob);
         addressBook.AddContact(sue);
         addressBook.AddContact(juan);
