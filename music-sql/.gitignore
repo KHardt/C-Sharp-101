@@ -1,3 +1,6 @@
 .DS_Store
-.DS_Store
-.db
+bin
+obj
+*.db
+*.sqlite3
+.vscode
