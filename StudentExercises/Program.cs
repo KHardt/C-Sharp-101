@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace StudentExercises {
     class Program {
         static void Main (string[] args) {
@@ -98,7 +98,7 @@ namespace StudentExercises {
             students.Add (Klaus);
             students.Add (Ricky);
             students.Add (Fig);
-            students.ForEach (pl2 => Console.WriteLine (pl2.ExerciseList));
+            //students.ForEach (pl2 => Console.WriteLine (pl2.lastName));
 
             List<Exercise> exercises = new List<Exercise> ();
             exercises.Add (SmashFace);
@@ -106,6 +106,46 @@ namespace StudentExercises {
             exercises.Add (EsteemKill);
             exercises.Add (GutPunch);
 
+            List<Instructor> instructors = new List<Instructor> ();
+            instructors.Add (DrDoom);
+            instructors.Add (DrDespair);
+            instructors.Add (DrHappy);
+            
+            List<Cohort> cohorts = new List<Cohort> ();
+            cohorts.Add (Cohort45);
+            cohorts.Add (Cohort46);
+            cohorts.Add (Cohort47);
+
+//List<Exercise> newList = from e in exercises
+var newList = from e in exercises
+where e.Language == "Python"
+select e;
+foreach (Exercise i in newList) {
+           Console.WriteLine(i.Name);
+}
+
+IEnumerable<Cohort> cohortList = from c in cohorts 
+where c.Name == "Cohort 45"
+select c;
+foreach (Cohort i in cohortList) {
+    Console.WriteLine(i.Name + " is the best");
+};
+
+List<Instructor> newInstructorList = (from i in instructors
+where i.InstructorCohort == Cohort45
+select i).ToList();
+foreach (Instructor i in newInstructorList) {
+    Console.WriteLine(i.firstName + i.lastName);
+}
+
+IEnumerable<Student> newStudentList = from s in students
+orderby s.lastName
+select s;
+foreach (Student s in newStudentList) {
+    Console.WriteLine(s.lastName);
+}
+
+           
 //list within a list. Need to iterate over both- build up a string
             //students.AddRange (exercises);
 /* 
