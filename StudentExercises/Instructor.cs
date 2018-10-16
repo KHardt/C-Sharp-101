@@ -22,6 +22,9 @@ namespace StudentExercises
             student.ExerciseList.Add(exercise);
     }
     
+        public void RemoveExercise (Exercise exercise, Student student) {
+            student.ExerciseList.Remove(exercise);
+        }
         
     }
 

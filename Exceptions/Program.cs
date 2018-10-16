@@ -41,9 +41,12 @@ public class Program
         
         AddressBook addressBook = new AddressBook();
 
+
         addressBook.AddContact(bob);
         addressBook.AddContact(sue);
         addressBook.AddContact(juan);
+
+
 
         // Try to addd a contact a second time
         addressBook.AddContact(sue);
@@ -63,11 +66,17 @@ public class Program
         //  Search the AddressBook by email and print the information about each Contact
         foreach (string email in emails)
         {
+            try {
             Contact contact = addressBook.GetByEmail(email);
             Console.WriteLine("----------------------------");
             Console.WriteLine($"Name: {contact.FullName}");
             Console.WriteLine($"Email: {contact.Email}");
             Console.WriteLine($"Address: {contact.Address}");
+            }
+             catch (KeyNotFoundException ex)
+                {
+                        Console.WriteLine($"{email} does not match a contact", ex);
+                }
         }
     }
 }

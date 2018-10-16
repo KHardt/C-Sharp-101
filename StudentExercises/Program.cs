@@ -93,6 +93,8 @@ namespace StudentExercises {
             DrDespair.AssignExercise (PunchFace, Fig);
             DrHappy.AssignExercise (SmashFace, Ricky);
             DrHappy.AssignExercise (EsteemKill, Ricky);
+            DrDoom.RemoveExercise(SmashFace, Klaus);
+            DrDoom.RemoveExercise(PunchFace, Klaus);
 
             List<Student> students = new List<Student> ();
             students.Add (Klaus);
@@ -140,12 +142,54 @@ foreach (Instructor i in newInstructorList) {
 
 IEnumerable<Student> newStudentList = from s in students
 orderby s.lastName
-select s;
+select s; //s is a callback or lamda 
 foreach (Student s in newStudentList) {
     Console.WriteLine(s.lastName);
 }
 
-           
+/* 
+ foreach (Exercise ex in exercises) {
+                List<string> assignedStudents = new List<string> ();
+
+                foreach (Student stu in students) {
+                    if (stu.ExerciseList.Contains (ex)) {
+                        assignedStudents.Add (stu.firstName);
+                    }
+                }
+                    Console.WriteLine ($"{ex.Name} is being worked on by {String.Join(", ", assignedStudents)}");
+ }
+*/
+ foreach (Student s in students) {
+    string sExercises = "";
+    int count = 0;
+
+    foreach (Exercise e in s.ExerciseList) {
+        if (count == 0) {
+            sExercises = $"{e.Name} in {e.Language}";
+            count ++;
+        } else {
+                sExercises = $"{e.Name} in {e.Language} and {sExercises}.";
+                count++;
+                    }
+                }
+
+                Console.WriteLine ($"{s.lastName} of {s.StudentCohort.Name} is working on {sExercises}");
+
+ }         
+
+
+ IEnumerable<Student> studentWithNone = students.Where(stu =>
+ stu.ExerciseList.Count ==0 ); //ToList() or Count() doesnt matter
+ foreach (var stu in studentWithNone) {
+     Console.WriteLine(stu.lastName);
+ }
+
+
+ var numberOfStudentEachCohort = students.GroupBy(c => c.StudentCohort.Name);
+ foreach (var studentGroup in numberOfStudentEachCohort) {
+     Console.WriteLine($"{studentGroup.Key} has {studentGroup.Count()} student");
+ }
+ 
 //list within a list. Need to iterate over both- build up a string
             //students.AddRange (exercises);
 /* 
