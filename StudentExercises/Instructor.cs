@@ -11,7 +11,7 @@ namespace StudentExercises
         
         public string SlackHandle { get; set;}
 
-        public Cohort InstructorCohort { get; set;}
+        public Cohort cohort { get; set;}
 
        // public Instructor (string firstName, string lastName) 
         //{

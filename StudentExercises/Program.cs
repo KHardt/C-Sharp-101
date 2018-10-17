@@ -11,6 +11,35 @@ namespace StudentExercises {
             DatabaseInterface.CheckExerciseTable();
             //DatabaseInterface.CheckTable();
             List<Exercise> exercisesList = db.Query<Exercise>(@"SELECT * FROM Exercise").ToList();
+            
+            DatabaseInterface.CheckInstructorsTable();
+            db.Query<Instructor, Cohort, Instructor>(@"
+            SELECT i.Id,
+            i.lastName,
+            c.Id,
+            c.cohortName
+            FROM Instructor i
+            JOIN Cohort c ON c.Id = i.Cohort",
+            (generatedInstructor, generatedCohort) =>
+            {
+                generatedInstructor.cohort = generatedCohort;
+                return generatedInstructor;
+            })
+            .ToList()
+            .ForEach(ins => Console.WriteLine($"{ins.lastName} {ins.firstName} is in {ins.cohort.cohortName}"));
+           
+           db.Execute(@"Insert into StudentExercises (studentId, exerciseId) Values (2, 3)");
+
+            /* 
+            DatabaseInterface.CheckStudentExercisesTable();
+            db.Query<Student, Exercise, Student>(@"
+            SELECT s.Id,
+            s.lastName,
+            e.Id,
+            e.exerciseName
+            
+*/
+            //instructorList.ForEach(i => Console.WriteLine($"{i.lastName}"));
             //exercisesList.ForEach(exer => Console.WriteLine($"{exer.exerciseName} {exer.language}"));
 
             //var newList2 = from e in exercisesList
@@ -26,7 +55,7 @@ namespace StudentExercises {
             exercisesList.ForEach(exer => Console.WriteLine($"{exer.exerciseName} {exer.language}"));
 
             //db.Execute(@"DELETE FROM Exercise where exerciseName = 'omg no'");
-
+/*
             Exercise SmashFace = new Exercise () {
                 exerciseName = "Smash my face",
                 language = "Python",
@@ -48,15 +77,15 @@ namespace StudentExercises {
             };
 
             Cohort Cohort45 = new Cohort () {
-                Name = "Cohort 45",
+                cohortName = "Cohort 45",
             };
 
             Cohort Cohort46 = new Cohort () {
-                Name = "Cohort 46",
+                cohortName = "Cohort 46",
             };
 
             Cohort Cohort47 = new Cohort () {
-                Name = "Cohort 47",
+                cohortName = "Cohort 47",
             };
 
             Student Klaus = new Student () {
@@ -90,21 +119,21 @@ namespace StudentExercises {
                 firstName = "Dr",
                 lastName = "Doom",
                 SlackHandle = "Doomy",
-                InstructorCohort = Cohort45
+                cohort = Cohort45
             };
 
             Instructor DrDespair = new Instructor () {
                 firstName = "D",
                 lastName = "Despair",
                 SlackHandle = "Despairy",
-                InstructorCohort = Cohort46
+                cohort = Cohort46
             };
 
             Instructor DrHappy = new Instructor () {
                 firstName = "Really",
                 lastName = "Happy",
                 SlackHandle = "HappyFace",
-                InstructorCohort = Cohort47
+                cohort = Cohort47
             };
 
             DrDoom.AssignExercise (SmashFace, Klaus);
@@ -149,14 +178,14 @@ foreach (Exercise i in newList) {
 }
 
 IEnumerable<Cohort> cohortList = from c in cohorts 
-where c.Name == "Cohort 45"
+where c.cohortName == "Cohort 45"
 select c;
 foreach (Cohort i in cohortList) {
     //Console.WriteLine(i.Name + " is the best");
 };
 
 List<Instructor> newInstructorList = (from i in instructors
-where i.InstructorCohort == Cohort45
+where i.cohort == Cohort45
 select i).ToList();
 foreach (Instructor i in newInstructorList) {
     //Console.WriteLine(i.firstName + i.lastName);
@@ -169,7 +198,7 @@ foreach (Student s in newStudentList) {
     //Console.WriteLine(s.lastName);
 }
 
-/* 
+
  foreach (Exercise ex in exercises) {
                 List<string> assignedStudents = new List<string> ();
 
@@ -180,7 +209,7 @@ foreach (Student s in newStudentList) {
                 }
                     Console.WriteLine ($"{ex.Name} is being worked on by {String.Join(", ", assignedStudents)}");
  }
-*/
+
  foreach (Student s in students) {
     string sExercises = "";
     int count = 0;
@@ -207,21 +236,27 @@ foreach (Student s in newStudentList) {
  }
 
 
- var numberOfStudentEachCohort = students.GroupBy(c => c.StudentCohort.Name);
+ var numberOfStudentEachCohort = students.GroupBy(c => c.StudentCohort.cohortName);
  foreach (var studentGroup in numberOfStudentEachCohort) {
      //Console.WriteLine($"{studentGroup.Key} has {studentGroup.Count()} student");
  }
  
 //list within a list. Need to iterate over both- build up a string
             //students.AddRange (exercises);
-/* 
+
             var i = 
             for (i = 0; i < 10; i++) {
                 for (int j = i; j < 10; j++)
                     Console.WriteLine ("Value of i: {0}, J: {1} ", i, j);
             }
-*/
 
+
+
+ 
+            
+//db.Execute(@"INSERT INTO Instructor (firstName, lastName, slackHandle, cohort) VALUES ('Jim', 'Carey', 'PetDet', 1);");
+
+*/
 
         }
     }
