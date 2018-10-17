@@ -1,28 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Data.Sqlite;
+using Dapper;
 namespace StudentExercises {
     class Program {
         static void Main (string[] args) {
 
+            SqliteConnection db = DatabaseInterface.Connection;
+            DatabaseInterface.CheckExerciseTable();
+            //DatabaseInterface.CheckTable();
+            List<Exercise> exercisesList = db.Query<Exercise>(@"SELECT * FROM Exercise").ToList();
+            //exercisesList.ForEach(exer => Console.WriteLine($"{exer.exerciseName} {exer.language}"));
+
+            //var newList2 = from e in exercisesList
+                //where e.language == "Python"
+            //select e;
+            //oreach (Exercise i in newList2) {
+           //Console.WriteLine(i.exerciseName);
+           // }
+
+            //db.Execute(@"INSERT INTO Exercise (exerciseName, language) VALUES ('omg no', 'SQL');");
+
+            //Console.WriteLine(exercisesList);
+            exercisesList.ForEach(exer => Console.WriteLine($"{exer.exerciseName} {exer.language}"));
+
+            //db.Execute(@"DELETE FROM Exercise where exerciseName = 'omg no'");
+
             Exercise SmashFace = new Exercise () {
-                Name = "Smash my face",
-                Language = "Python",
+                exerciseName = "Smash my face",
+                language = "Python",
             };
 
             Exercise PunchFace = new Exercise () {
-                Name = "Punch my face",
-                Language = "C#",
+                exerciseName = "Punch my face",
+                language = "C#",
             };
 
             Exercise GutPunch = new Exercise () {
-                Name = "Punch in gut",
-                Language = "ISODUM",
+                exerciseName = "Punch in gut",
+                language = "ISODUM",
             };
 
             Exercise EsteemKill = new Exercise () {
-                Name = "Good Luck",
-                Language = "CVerySharp",
+                exerciseName = "Good Luck",
+                language = "CVerySharp",
             };
 
             Cohort Cohort45 = new Cohort () {
@@ -120,31 +142,31 @@ namespace StudentExercises {
 
 //List<Exercise> newList = from e in exercises
 var newList = from e in exercises
-where e.Language == "Python"
+where e.language == "Python"
 select e;
 foreach (Exercise i in newList) {
-           Console.WriteLine(i.Name);
+           //Console.WriteLine(i.exerciseName);
 }
 
 IEnumerable<Cohort> cohortList = from c in cohorts 
 where c.Name == "Cohort 45"
 select c;
 foreach (Cohort i in cohortList) {
-    Console.WriteLine(i.Name + " is the best");
+    //Console.WriteLine(i.Name + " is the best");
 };
 
 List<Instructor> newInstructorList = (from i in instructors
 where i.InstructorCohort == Cohort45
 select i).ToList();
 foreach (Instructor i in newInstructorList) {
-    Console.WriteLine(i.firstName + i.lastName);
+    //Console.WriteLine(i.firstName + i.lastName);
 }
 
 IEnumerable<Student> newStudentList = from s in students
 orderby s.lastName
 select s; //s is a callback or lamda 
 foreach (Student s in newStudentList) {
-    Console.WriteLine(s.lastName);
+    //Console.WriteLine(s.lastName);
 }
 
 /* 
@@ -165,15 +187,15 @@ foreach (Student s in newStudentList) {
 
     foreach (Exercise e in s.ExerciseList) {
         if (count == 0) {
-            sExercises = $"{e.Name} in {e.Language}";
+            sExercises = $"{e.exerciseName} in {e.language}";
             count ++;
         } else {
-                sExercises = $"{e.Name} in {e.Language} and {sExercises}.";
+                sExercises = $"{e.exerciseName} in {e.language} and {sExercises}.";
                 count++;
                     }
                 }
 
-                Console.WriteLine ($"{s.lastName} of {s.StudentCohort.Name} is working on {sExercises}");
+                //Console.WriteLine ($"{s.lastName} of {s.StudentCohort.Name} is working on {sExercises}");
 
  }         
 
@@ -181,13 +203,13 @@ foreach (Student s in newStudentList) {
  IEnumerable<Student> studentWithNone = students.Where(stu =>
  stu.ExerciseList.Count ==0 ); //ToList() or Count() doesnt matter
  foreach (var stu in studentWithNone) {
-     Console.WriteLine(stu.lastName);
+     //Console.WriteLine(stu.lastName);
  }
 
 
  var numberOfStudentEachCohort = students.GroupBy(c => c.StudentCohort.Name);
  foreach (var studentGroup in numberOfStudentEachCohort) {
-     Console.WriteLine($"{studentGroup.Key} has {studentGroup.Count()} student");
+     //Console.WriteLine($"{studentGroup.Key} has {studentGroup.Count()} student");
  }
  
 //list within a list. Need to iterate over both- build up a string
