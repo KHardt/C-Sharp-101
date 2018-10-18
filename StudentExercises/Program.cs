@@ -28,8 +28,41 @@ namespace StudentExercises {
             .ToList()
             .ForEach(ins => Console.WriteLine($"{ins.lastName} {ins.firstName} is in {ins.cohort.cohortName}"));
            
-           db.Execute(@"Insert into StudentExercises (studentId, exerciseId) Values (2, 3)");
 
+           //add to joiner table StudentExercises
+           //db.Execute(@"Insert into StudentExercises (studentId, exerciseId) Values (2, 3)");
+
+
+            DatabaseInterface.CheckStudentTable();
+            db.Query<Student, Cohort, Student>(@"
+            SELECT s.`Id `,
+            s.lastName,
+            c.Id,
+            c.cohortName
+            FROM Student s
+            JOIN Cohort c ON c.Id = s.cohort",
+            (generatedStudent, generatedCohort) =>
+            {
+                generatedStudent.Cohort = generatedCohort;
+                return generatedStudent;
+            })
+            .ToList()
+            .ForEach(stu => Console.WriteLine($"{stu.lastName} {stu.firstName} is in {stu.Cohort.cohortName}"));
+           
+            List<Student> ExercisesList = db.Query<Student>(@"
+            SELECT * FROM Exercise").ToList().ForEach(s => Console.WriteLine($"{s.lastName} {s.ExerciseList}"));
+
+
+            /* 
+            Dictionary<string, List<Student>> report = new Dictionary<string, List<Student>>();
+            IEnumerable<int> StudentExer = db.Query<int>((@"
+            SELECT studentId,
+            exerciseId
+            from StudentExercises
+            JOIN Exercise e ON 
+            
+            ")
+        */
             /* 
             DatabaseInterface.CheckStudentExercisesTable();
             db.Query<Student, Exercise, Student>(@"
